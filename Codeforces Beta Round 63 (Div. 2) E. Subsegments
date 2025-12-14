@@ -1,0 +1,82 @@
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.TreeSet;
+
+public class Solution {
+
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+
+        int[] arr = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+
+        }
+
+        HashMap <Integer,Integer> map = new HashMap<>();
+
+        TreeSet <Integer> set = new TreeSet<>();
+
+        int l =0;
+        int r= k;
+
+
+        for (int i = 0; i < k; i++) {
+
+            if(map.containsKey(arr[i])){
+                map.compute(arr[i], (key, freq) -> freq + 1);
+                if(set.contains(arr[i])) set.remove(arr[i]);
+            }
+            else {
+                map.put(arr[i],1);
+                set.add(arr[i]);
+            }
+
+
+        }
+        if(set.isEmpty()) System.out.println("Nothing");
+        else System.out.println(set.last());
+
+        while(r< arr.length){
+
+            if(map.containsKey(arr[r])){
+                map.compute(arr[r], (key, freq) -> freq + 1);
+                if(set.contains(arr[r])) set.remove(arr[r]);
+            }
+            else {
+                map.put(arr[r],1);
+                set.add(arr[r]);
+            }
+
+            int rem = arr[l];
+
+            int freqrem = map.get(rem);
+            if(freqrem==1){
+                map.remove(rem);
+                set.remove(rem);
+            }
+            else if(freqrem==2){
+               map.put(rem, freqrem-1);
+               set.add(rem);
+
+            }
+            else{
+                map.put(rem, freqrem-1);
+            }
+
+            l++;
+            r++;
+
+            if(set.isEmpty()) System.out.println("Nothing");
+            else System.out.println(set.last());
+
+
+        }
+
+    }
+}
