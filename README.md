@@ -7,6 +7,7 @@
 
 // --- PASTE THIS AT THE BOTTOM OF YOUR CLASS ---
 // Use it in place of scanner
+// import java.io.*;
     static class FastReader {
         BufferedReader br;
         StringTokenizer st;
