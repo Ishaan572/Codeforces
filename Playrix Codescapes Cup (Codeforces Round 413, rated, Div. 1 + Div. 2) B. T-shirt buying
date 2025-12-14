@@ -1,0 +1,80 @@
+import java.util.*;
+
+public class Solution {
+
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+
+
+        int[] arr = new int[n]; int[] fro = new int[n]; int[] bac = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();}
+        for (int i = 0; i < n; i++) {
+            fro[i] = sc.nextInt();}
+        for (int i = 0; i < n; i++) {
+            bac[i] = sc.nextInt();}
+
+        int k = sc.nextInt();
+
+        List<Integer> ans = new ArrayList<>();
+
+        TreeSet <Integer> set1 = new TreeSet<>();
+        TreeSet <Integer> set2 = new TreeSet<>();
+        TreeSet <Integer> set3 = new TreeSet<>();
+
+
+        for (int i = 0; i < n; i++) {
+            if(fro[i]==1) set1.add(arr[i]);
+           else if(fro[i]==2) set2.add(arr[i]);
+           else if(fro[i]==3) set3.add(arr[i]);
+            if(bac[i]==1) set1.add(arr[i]);
+          else  if(bac[i]==2) set2.add(arr[i]);
+          else  if(bac[i]==3) set3.add(arr[i]);
+
+        }
+
+        for (int i = 0; i < k; i++) {
+            int col = sc.nextInt();
+            if(col==1) {
+                if(set1.isEmpty()) ans.add(-1);
+                else {
+                    int temp = set1.pollFirst();
+                    ans.add(temp);
+                    set2.remove(temp);
+                    set3.remove(temp);
+                }
+            }
+            else if(col==2) {
+                if(set2.isEmpty()) ans.add(-1);
+                else {
+                    int temp = set2.pollFirst();
+                    ans.add(temp);
+                    set1.remove(temp);
+                    set3.remove(temp);
+                }
+            }
+
+            else if(col==3) {
+                if(set3.isEmpty()) ans.add(-1);
+                else {
+                    int temp = set3.pollFirst();
+                    ans.add(temp);
+                    set2.remove(temp);
+                    set1.remove(temp);
+                }
+            }
+
+        }
+
+        for (int i = 0; i < k; i++) {
+           System.out.print(ans.get(i) + " ");
+        }
+
+
+
+    }
+}
