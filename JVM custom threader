@@ -1,0 +1,83 @@
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main implements Runnable {
+    
+    // --- YOUR GLOBAL VARIABLES HERE ---
+    
+    
+    public static void main(String[] args) throws Exception {
+        // Spawns a custom thread with 64MB of stack memory (1 << 26)
+        // Change to (1 << 27) for 128MB if needed
+        Thread t = new Thread(null, new Main(), "MainThread", 1 << 26);
+        t.start();
+        t.join();
+    }
+
+    public void run() {
+        FastReader sc = new FastReader();
+        
+        // Remove this if the problem only has a single test case
+        int t = sc.nextInt();
+        while (t-- > 0) {
+            
+            // --- YOUR INPUT PARSING AND LOGIC HERE ---
+            
+            
+        }
+    }
+
+    // --- YOUR RECURSIVE METHODS HERE ---
+    
+    
+
+    static class FastReader {
+        BufferedReader br;
+        StringTokenizer st;
+
+        public FastReader() {
+            br = new BufferedReader(new InputStreamReader(System.in));
+        }
+
+        String next() {
+            while (st == null || !st.hasMoreElements()) {
+                try {
+                    String line = br.readLine();
+                    if (line == null) return null;
+                    st = new StringTokenizer(line);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return st.nextToken();
+        }
+
+        int nextInt() {
+            return Integer.parseInt(next());
+        }
+
+        long nextLong() {
+            return Long.parseLong(next());
+        }
+
+        double nextDouble() {
+            return Double.parseDouble(next());
+        }
+
+        String nextLine() {
+            String str = "";
+            try {
+                if (st != null && st.hasMoreElements()) {
+                    str = st.nextToken("\n");
+                } else {
+                    str = br.readLine();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return str;
+        }
+    }
+}
